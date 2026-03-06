@@ -75,7 +75,7 @@ Note on Dataset Evolution:
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/heart-disease-prediction.git
+git clone https://github.com/Vassista/heart-disease-prediction.git
 cd heart-disease-prediction
 
 # Install dependencies
