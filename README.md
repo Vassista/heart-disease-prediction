@@ -15,6 +15,8 @@
 
 ---
 
+View the ML model here: [Open notebook](heart-disease.ipynb)
+
 ## 📋 Overview
 
 This project builds and evaluates several classification models to predict whether a patient has heart disease based on clinical features. It follows a structured machine learning workflow from data exploration to final model evaluation.
@@ -64,6 +66,7 @@ Note on Dataset Evolution:
 | **XGBoost** ✅ | **~87%** | **~88%** |
 
 > **Best model:** XGBoost: best balance of precision, recall and AUC-ROC with less overfitting after tuning.
+
 
 ---
 
