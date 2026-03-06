@@ -36,7 +36,7 @@ This project builds and evaluates several classification models to predict wheth
 The dataset originates from the **Cleveland Heart Disease** database from the [UCI ML Repository](https://archive.ics.uci.edu/ml/datasets/heart+Disease) and is also available on [Kaggle](https://www.kaggle.com/datasets/sumaiyatasmeem/heart-disease-classification-dataset).
 
 Note on Dataset Evolution:
-> the Cleveland database was very limited because of its smaller sample size ($n \approx 301$). To work and imporve the model performance, the project shifted to a comprehensive Heart Failure Prediction Dataset, which aggregates five existing heart datasets (including the UCI ML repository). To maintain codebase consistency, categorical features from the new dataset were mapped to resemble the original UCI dataset. This allowed for a seamless transition to the larger dataset with very less refactoring. The new dataset can be found on [kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
+> the Cleveland database was very limited because of its smaller sample size ($n \approx 301$). To work and improve the model performance, the project shifted to a comprehensive Heart Failure Prediction Dataset, which aggregates five existing heart datasets (including the UCI ML repository). To maintain codebase consistency, categorical features from the new dataset were mapped to resemble the original UCI dataset. This allowed for a seamless transition to the larger dataset with very less refactoring. The new dataset can be found on [kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
 
 | Feature | Description |
 |---------|-------------|
