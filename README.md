@@ -3,9 +3,14 @@
 > **Machine Learning model to predict heart disease using classification algorithms.**
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-1.26-013243?logo=numpy&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?logo=scikit-learn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.x-006400)
 ![Polars](https://img.shields.io/badge/Polars-DataFrame-CD792C)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.x-11557C?logo=matplotlib&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-0.11-4AB3E8?logo=seaborn&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
+![Conda](https://img.shields.io/badge/Conda-Environment-44A833?logo=anaconda&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
@@ -79,7 +84,8 @@ git clone https://github.com/Vassista/heart-disease-prediction.git
 cd heart-disease-prediction
 
 # Install dependencies
-pip install -r requirements.txt   # or: pip install polars scikit-learn xgboost seaborn matplotlib numpy
+ conda env create -f environment.yml
+ conda activate heart-disease-env
 
 # Run the notebook
 jupyter notebook heart-disease.ipynb
