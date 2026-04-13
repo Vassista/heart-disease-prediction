@@ -208,8 +208,7 @@ __marimo__/
 .DS_Store
 
 # Model artifacts
-models/*.joblib
-*.joblib
+!models/heart_disease_model.joblib
 heart-disease.ipynb
 frontend/node_modules
 .npm_cache
