@@ -90,8 +90,14 @@ cd heart-disease-prediction
  conda env create -f environment.yml
  conda activate heart-disease-env
 
-# Run the notebook
+# Option 1: Run the notebook
 jupyter notebook heart-disease.ipynb
+
+# Option 2: Run the modular training script
+python train.py
+
+# Option 3: Run the FastAPI server
+uvicorn src.api:app --reload
 ```
 
 ---
@@ -100,11 +106,22 @@ jupyter notebook heart-disease.ipynb
 
 ```
 heart-disease-prediction/
-├── data/
-│   └── heart-disease.csv       # Dataset
-├── heart-disease.ipynb          # Main notebook
-├── README.md                    # This file
-└── .gitignore
+├── src/                      # Modular Python source code
+│   ├── api.py                # FastAPI web server and endpoints
+│   ├── schemas.py            # Pydantic schemas for data validation
+│   ├── data_loader.py        # Polars-based data loading
+│   ├── preprocessing.py      # Categorical mapping & transformer logic
+│   ├── models.py             # Model definitions & save/load helpers
+│   ├── evaluation.py         # Performance metrics & visualization
+│   └── utils.py              # Pathing and logging utilities
+├── data/                     # Raw dataset storage
+├── models/                   # Serialized model artifacts (.joblib)
+├── train.py                  # CLI script to train and save the model
+├── requirements.txt          # Python dependencies for pip
+├── environment.yml           # Full Conda environment configuration
+├── heart-disease.ipynb       # Original research and EDA notebook
+├── README.md                 # Project documentation
+└── .gitignore                # Git exclusion rules
 ```
 
 ---
