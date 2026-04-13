@@ -9,6 +9,7 @@ import {
   AlertCircle, 
   CheckCircle2,
   ChevronRight,
+  ChevronDown,
   TrendingUp,
   Wind
 } from 'lucide-react';
@@ -74,6 +75,10 @@ const App: React.FC = () => {
       }
 
       const data = await response.json();
+      
+      // Artificial premium delay to simulate complex analysis
+      await new Promise(resolve => setTimeout(resolve, 5000));
+      
       setResult(data);
     } catch (err: any) {
       setError(err.message);
@@ -96,9 +101,12 @@ const App: React.FC = () => {
             Next-Gen Cardiovascular Diagnostic Engine // v1.0.4
           </p>
         </div>
-        <div className="glass px-4 py-2 flex items-center gap-3">
-          <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span className="text-xs font-bold mono">SYSTEM STATUS: OPTIMAL</span>
+        <div className="glass px-4 py-2 flex items-center gap-3 bg-emerald-500/10">
+          <Activity size={14} className="text-emerald-500 animate-pulse" />
+          <div className="flex flex-col">
+            <span className="text-[10px] text-zinc-500 leading-none mb-1 mono">SYSTEM STATUS</span>
+            <span className="text-xs font-bold mono leading-none text-emerald-400">OPTIMAL</span>
+          </div>
         </div>
       </header>
 
@@ -123,20 +131,26 @@ const App: React.FC = () => {
 
                 <div className="input-group">
                   <label htmlFor="sex"><Activity size={14} className="mr-2" /> Biological Sex</label>
-                  <select id="sex" name="sex" value={formData.sex} onChange={handleChange}>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                  </select>
+                  <div className="relative">
+                    <select id="sex" name="sex" value={formData.sex} onChange={handleChange}>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+                  </div>
                 </div>
 
                 <div className="input-group">
                   <label htmlFor="cp"><AlertCircle size={14} className="mr-2" /> Chest Pain Type</label>
-                  <select id="cp" name="cp" value={formData.cp} onChange={handleChange}>
-                    <option value="ASY">Asymptomatic (ASY)</option>
-                    <option value="ATA">Atypical Angina (ATA)</option>
-                    <option value="NAP">Non-Anginal Pain (NAP)</option>
-                    <option value="TA">Typical Angina (TA)</option>
-                  </select>
+                  <div className="relative">
+                    <select id="cp" name="cp" value={formData.cp} onChange={handleChange}>
+                      <option value="ASY">Asymptomatic (ASY)</option>
+                      <option value="ATA">Atypical Angina (ATA)</option>
+                      <option value="NAP">Non-Anginal Pain (NAP)</option>
+                      <option value="TA">Typical Angina (TA)</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+                  </div>
                 </div>
 
                 <div className="input-group">
@@ -154,19 +168,25 @@ const App: React.FC = () => {
               <div className="space-y-6">
                 <div className="input-group">
                   <label htmlFor="fbs"><Zap size={14} className="mr-2" /> Fasting Blood Sugar {'>'} 120</label>
-                  <select id="fbs" name="fbs" value={formData.fbs} onChange={handleChange}>
-                    <option value="0">Normal</option>
-                    <option value="1">Elevated</option>
-                  </select>
+                  <div className="relative">
+                    <select id="fbs" name="fbs" value={formData.fbs} onChange={handleChange}>
+                      <option value="0">Normal</option>
+                      <option value="1">Elevated</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+                  </div>
                 </div>
 
                 <div className="input-group">
                   <label htmlFor="restecg"><Activity size={14} className="mr-2" /> Resting ECG</label>
-                  <select id="restecg" name="restecg" value={formData.restecg} onChange={handleChange}>
-                    <option value="Normal">Normal</option>
-                    <option value="ST">ST-T Wave Abnormality</option>
-                    <option value="LVH">Left Ventricular Hypertrophy</option>
-                  </select>
+                  <div className="relative">
+                    <select id="restecg" name="restecg" value={formData.restecg} onChange={handleChange}>
+                      <option value="Normal">Normal</option>
+                      <option value="ST">ST-T Wave Abnormality</option>
+                      <option value="LVH">Left Ventricular Hypertrophy</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+                  </div>
                 </div>
 
                 <div className="input-group">
@@ -176,10 +196,13 @@ const App: React.FC = () => {
 
                 <div className="input-group">
                   <label htmlFor="exang"><Wind size={14} className="mr-2" /> Exercise Angina</label>
-                  <select id="exang" name="exang" value={formData.exang} onChange={handleChange}>
-                    <option value="N">No</option>
-                    <option value="Y">Yes</option>
-                  </select>
+                  <div className="relative">
+                    <select id="exang" name="exang" value={formData.exang} onChange={handleChange}>
+                      <option value="N">No</option>
+                      <option value="Y">Yes</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+                  </div>
                 </div>
 
                 <div className="input-group">
@@ -190,11 +213,14 @@ const App: React.FC = () => {
                     </div>
                     <div className="flex-1">
                       <label htmlFor="slope">ST Slope</label>
-                      <select id="slope" name="slope" value={formData.slope} onChange={handleChange}>
-                        <option value="Up">Up</option>
-                        <option value="Flat">Flat</option>
-                        <option value="Down">Down</option>
-                      </select>
+                      <div className="relative">
+                        <select id="slope" name="slope" value={formData.slope} onChange={handleChange}>
+                          <option value="Up">Up</option>
+                          <option value="Flat">Flat</option>
+                          <option value="Down">Down</option>
+                        </select>
+                        <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -230,13 +256,13 @@ const App: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="glass p-8 flex flex-col items-center justify-center text-center h-[550px]"
+                className="glass p-8 flex flex-col items-center justify-center text-center min-h-[500px]"
               >
                 <div className="w-20 h-20 rounded-full bg-zinc-900 flex items-center justify-center mb-6 border border-zinc-800">
                   <Stethoscope size={40} className="text-zinc-700" />
                 </div>
                 <h3 className="text-2xl text-zinc-500 mb-2">System Awaiting Data</h3>
-                <p className="text-zinc-600 max-w-[200px] text-sm">Input clinical parameters to begin cardiovascular risk assessment.</p>
+                <p className="text-zinc-600 max-w-[200px] text-sm mono uppercase tracking-widest text-[10px]">Ready for biometrics input.</p>
               </motion.div>
             )}
 
@@ -246,7 +272,7 @@ const App: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="glass p-8 flex flex-col items-center justify-center text-center h-[550px]"
+                className="glass p-8 flex flex-col items-center justify-center text-center min-h-[500px]"
               >
                 <div className="relative w-32 h-32 mb-8">
                   <div className="absolute inset-0 rounded-full border-4 border-blue-500/20"></div>
@@ -265,14 +291,14 @@ const App: React.FC = () => {
                 key="error"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="glass p-8 flex flex-col items-center justify-center text-center h-[550px]"
+                className="glass p-8 flex flex-col items-center justify-center text-center min-h-[300px] bg-red-500/10 border-red-500/30"
               >
-                <AlertCircle size={64} className="text-red-500 mb-6" />
+                <AlertCircle size={48} className="text-red-500 mb-6" />
                 <h3 className="text-2xl text-red-500 mb-4">Diagnostic Failure</h3>
-                <code className="block p-4 bg-red-950/30 rounded text-xs text-red-400 mono w-full">{error}</code>
+                <code className="block p-4 bg-red-950/30 rounded text-xs text-red-400 mono w-full overflow-hidden break-words">{error}</code>
                 <button 
                   onClick={() => setError(null)}
-                  className="mt-8 text-xs underline uppercase tracking-widest text-zinc-500 hover:text-zinc-300 pointer"
+                  className="mt-8 text-xs underline uppercase tracking-widest text-red-400 hover:text-red-200 pointer"
                 >
                   Clear Exception
                 </button>
@@ -285,7 +311,7 @@ const App: React.FC = () => {
                 initial={{ opacity: 0, rotateY: 90 }}
                 animate={{ opacity: 1, rotateY: 0 }}
                 transition={{ type: "spring", damping: 12 }}
-                className={`glass p-8 h-[550px] flex flex-col relative overflow-hidden`}
+                className={`glass p-8 min-h-[500px] flex flex-col relative overflow-hidden`}
                 style={{ borderColor: result.prediction === 1 ? 'rgba(239, 68, 68, 0.4)' : 'rgba(16, 185, 129, 0.4)' }}
               >
                 <div className={`absolute top-0 right-0 p-4 mono text-xs opacity-20`}>
@@ -328,7 +354,7 @@ const App: React.FC = () => {
                       {result.prediction === 1 ? 'HIGH RISK DETECTED' : 'LOW RISK DETECTED'}
                     </div>
                     
-                    <p className="text-lg px-4">
+                    <p className="text-lg px-4 leading-relaxed">
                       {result.message}
                     </p>
                   </div>
@@ -337,11 +363,11 @@ const App: React.FC = () => {
                 <div className="mt-8 grid grid-cols-2 gap-4 border-t pt-6">
                   <div className="text-left">
                     <div className="text-xs mono text-zinc-500 uppercase">Engine</div>
-                    <div className="text-xs font-bold">XGBOOST V1</div>
+                    <div className="text-xs font-bold text-blue-400">XGBOOST V2.1</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs mono text-zinc-500 uppercase">Precision</div>
-                    <div className="text-xs font-bold">CARDIAC-AI</div>
+                    <div className="text-xs mono text-zinc-500 uppercase">Status</div>
+                    <div className="text-xs font-bold text-emerald-400">VERIFIED</div>
                   </div>
                 </div>
               </motion.div>
