@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  Activity, 
-  Heart, 
-  Stethoscope, 
-  User, 
-  Droplets, 
-  Zap, 
-  AlertCircle, 
+import {
+  Activity,
+  Heart,
+  Stethoscope,
+  User,
+  Droplets,
+  Zap,
+  AlertCircle,
   CheckCircle2,
   ChevronRight,
   ChevronDown,
@@ -44,8 +44,8 @@ const App: React.FC = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'age' || name === 'trestbps' || name === 'chol' || name === 'thalach' || name === 'oldpeak' || name === 'fbs' 
-        ? parseFloat(value) 
+      [name]: name === 'age' || name === 'trestbps' || name === 'chol' || name === 'thalach' || name === 'oldpeak' || name === 'fbs'
+        ? parseFloat(value)
         : value
     }));
   };
@@ -62,7 +62,7 @@ const App: React.FC = () => {
       if (apiUrl.endsWith('/')) {
         apiUrl = apiUrl.slice(0, -1);
       }
-      
+
       const response = await fetch(`${apiUrl}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -75,10 +75,9 @@ const App: React.FC = () => {
       }
 
       const data = await response.json();
-      
-      // Artificial premium delay to simulate complex analysis
-      await new Promise(resolve => setTimeout(resolve, 5000));
-      
+
+      await new Promise(resolve => setTimeout(resolve, 3000));
+
       setResult(data);
     } catch (err: any) {
       setError(err.message);
@@ -90,7 +89,7 @@ const App: React.FC = () => {
   return (
     <div className="container min-h-screen">
       <div className="scanner-line"></div>
-      
+
       {/* Header */}
       <header className="mb-12 pt-8 flex sm:flex-row flex-col items-center justify-between gap-4">
         <div>
@@ -115,7 +114,7 @@ const App: React.FC = () => {
         <section>
           <form onSubmit={handleSubmit} className="glass p-8 overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 from-blue-400 to-emerald-400 bg-gradient-to-r opacity-30"></div>
-            
+
             <div className="flex items-center gap-3 mb-8">
               <Activity className="text-blue-500" size={24} />
               <h2 className="text-2xl lowercase tracking-tight">Clinical Parameters</h2>
@@ -157,7 +156,7 @@ const App: React.FC = () => {
                   <label htmlFor="trestbps"><Droplets size={14} className="mr-2" /> Resting BP (mm Hg)</label>
                   <input type="number" id="trestbps" name="trestbps" value={formData.trestbps} onChange={handleChange} required />
                 </div>
-                
+
                 <div className="input-group">
                   <label htmlFor="chol"><Activity size={14} className="mr-2" /> Cholesterol (mg/dl)</label>
                   <input type="number" id="chol" name="chol" value={formData.chol} onChange={handleChange} required />
@@ -228,8 +227,8 @@ const App: React.FC = () => {
             </div>
 
             <div className="mt-8 pt-6 border-t">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isLoading}
                 className={`btn ${isLoading ? 'opacity-50' : ''}`}
               >
@@ -251,7 +250,7 @@ const App: React.FC = () => {
         <section className="space-y-8">
           <AnimatePresence mode="wait">
             {!result && !isLoading && !error && (
-              <motion.div 
+              <motion.div
                 key="idle"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -267,7 +266,7 @@ const App: React.FC = () => {
             )}
 
             {isLoading && (
-              <motion.div 
+              <motion.div
                 key="loading"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -287,7 +286,7 @@ const App: React.FC = () => {
             )}
 
             {error && (
-              <motion.div 
+              <motion.div
                 key="error"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -296,7 +295,7 @@ const App: React.FC = () => {
                 <AlertCircle size={48} className="text-red-500 mb-6" />
                 <h3 className="text-2xl text-red-500 mb-4">Diagnostic Failure</h3>
                 <code className="block p-4 bg-red-950/30 rounded text-xs text-red-400 mono w-full overflow-hidden break-words">{error}</code>
-                <button 
+                <button
                   onClick={() => setError(null)}
                   className="mt-8 text-xs underline uppercase tracking-widest text-red-400 hover:text-red-200 pointer"
                 >
@@ -306,7 +305,7 @@ const App: React.FC = () => {
             )}
 
             {result && (
-              <motion.div 
+              <motion.div
                 key="result"
                 initial={{ opacity: 0, rotateY: 90 }}
                 animate={{ opacity: 1, rotateY: 0 }}
@@ -321,15 +320,15 @@ const App: React.FC = () => {
                 <div className="flex-1 flex flex-col items-center justify-center">
                   <div className="gauge-container">
                     <svg className="absolute w-full h-full -rotate-90" viewBox="0 0 200 200">
-                      <circle 
-                        cx="100" cy="100" r="90" 
-                        fill="transparent" 
-                        stroke="rgba(24, 24, 27, 0.8)" 
+                      <circle
+                        cx="100" cy="100" r="90"
+                        fill="transparent"
+                        stroke="rgba(24, 24, 27, 0.8)"
                         strokeWidth="12"
                       />
-                      <motion.circle 
-                        cx="100" cy="100" r="90" 
-                        fill="transparent" 
+                      <motion.circle
+                        cx="100" cy="100" r="90"
+                        fill="transparent"
                         stroke={result.prediction === 1 ? '#ef4444' : '#10b981'}
                         strokeWidth="12"
                         strokeDasharray={565.4}
@@ -346,14 +345,14 @@ const App: React.FC = () => {
 
                   <div className="space-y-4 text-center">
                     <div className={`flex items-center justify-center gap-2 px-6 py-2 rounded-full border text-sm font-bold mono ${
-                      result.prediction === 1 
-                        ? 'text-red-400' 
+                      result.prediction === 1
+                        ? 'text-red-400'
                         : 'text-emerald-400'
                     }`} style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}>
                       {result.prediction === 1 ? <AlertCircle size={16} /> : <CheckCircle2 size={16} />}
                       {result.prediction === 1 ? 'HIGH RISK DETECTED' : 'LOW RISK DETECTED'}
                     </div>
-                    
+
                     <p className="text-lg px-4 leading-relaxed">
                       {result.message}
                     </p>
