@@ -1,135 +1,99 @@
-# 🫀 Heart Disease Prediction
+# 🫀 PulseGuard Sentinel: Heart Disease Prediction
 
-> **Machine Learning model to predict heart disease using classification algorithms.**
+> **A high-fidelity machine learning platform performing cardiovascular risk assessment using production-grade classification engines.**
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-1.26-013243?logo=numpy&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-F7931E?logo=scikit-learn&logoColor=white)
+![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?logo=vite&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.x-009688?logo=fastapi&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.x-006400)
-![Polars](https://img.shields.io/badge/Polars-DataFrame-CD792C)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-3.x-11557C?logo=matplotlib&logoColor=white)
-![Seaborn](https://img.shields.io/badge/Seaborn-0.11-4AB3E8?logo=seaborn&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
-![Conda](https://img.shields.io/badge/Conda-Environment-44A833?logo=anaconda&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Vercel](https://img.shields.io/badge/Vercel-Frontend-000000?logo=vercel&logoColor=white)
+![Railway](https://img.shields.io/badge/Railway-Backend-131415?logo=railway&logoColor=white)
 
 ---
 
-View the ML model here: [Open notebook](heart-disease.ipynb)
+## 📋 Project Overview
 
-## 📋 Overview
+PulseGuard Sentinel is a full-stack AI application that predicts heart disease probability based on clinical biometrics. It transitions from raw research (Jupyter) to a modular production system featuring a **high-fidelity medical telemetry dashboard**.
 
-This project builds and evaluates several classification models to predict whether a patient has heart disease based on clinical features. It follows a structured machine learning workflow from data exploration to final model evaluation.
-
-### Key Steps
-
-| Step | Description |
-|------|-------------|
-| **EDA** | Explore distributions, correlations and class balance |
-| **Feature Engineering** | Z-score scaling + One-Hot Encoding via `ColumnTransformer` |
-| **Modelling** | Logistic Regression · Random Forest · XGBoost |
-| **Tuning** | `GridSearchCV` / `RandomizedSearchCV` for hyperparameter optimisation |
-| **Evaluation** | Confusion Matrix · Classification Report · ROC-AUC |
-
----
-
-## 📊 Dataset
-
-The dataset originates from the **Cleveland Heart Disease** database from the [UCI ML Repository](https://archive.ics.uci.edu/ml/datasets/heart+Disease) and is also available on [Kaggle](https://www.kaggle.com/datasets/sumaiyatasmeem/heart-disease-classification-dataset).
-
-Note on Dataset Evolution:
-> the Cleveland database was very limited because of its smaller sample size ($n \approx 301$). To work and improve the model performance, the project shifted to a comprehensive Heart Failure Prediction Dataset, which aggregates five existing heart datasets (including the UCI ML repository). To maintain codebase consistency, categorical features from the new dataset were mapped to resemble the original UCI dataset. This allowed for a seamless transition to the larger dataset with very less refactoring. The new dataset can be found on [kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
-
-| Feature | Description |
-|---------|-------------|
-| `age` | Age in years |
-| `sex` | 1 = male · 0 = female |
-| `cp` | Chest pain type (0–3) |
-| `trestbps` | Resting blood pressure (mm Hg) |
-| `chol` | Serum cholesterol (mg/dl) |
-| `fbs` | Fasting blood sugar > 120 mg/dl |
-| `restecg` | Resting ECG results (0–2) |
-| `thalach` | Maximum heart rate achieved |
-| `exang` | Exercise-induced angina |
-| `oldpeak` | ST depression induced by exercise |
-| `slope` | Slope of peak exercise ST segment |
-| `target` | **1 = disease · 0 = no disease** |
-
----
-
-## 🧠 Models & Results
-
-| Model | CV Accuracy | Test Accuracy |
-|-------|:----------:|:------------:|
-| Logistic Regression | ~85% | ~86% |
-| Random Forest | ~86% | ~87% |
-| **XGBoost** ✅ | **~87%** | **~88%** |
-
-> **Best model:** XGBoost: best balance of precision, recall and AUC-ROC with less overfitting after tuning.
-
+### 🏗️ Evolution Pipeline
+1. **Research Phase**: EDA and feature engineering in [Jupyter](heart-disease.ipynb).
+2. **Modularization**: Refactoring code into clean, testable Python modules.
+3. **API Integration**: Serving the XGBoost model via [FastAPI](src/api.py).
+4. **Front-End Design**: A "Cyber-Medical" dashboard built with [React & Framer Motion](frontend/).
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Data wrangling:** [Polars](https://pola.rs/)
-- **Visualisation:** Matplotlib · Seaborn
-- **Machine Learning:** scikit-learn · XGBoost
-- **Preprocessing:** `ColumnTransformer` · `Pipeline` · `StandardScaler` · `OneHotEncoder`
+### AI & Backend
+- **Data Engine:** [Polars](https://pola.rs/) (High-performance DataFrame library)
+- **ML Framework:** [scikit-learn](https://scikit-learn.org/) & [XGBoost](https://xgboost.ai/)
+- **Inference Server:** [FastAPI](https://fastapi.tiangolo.com/) + Pydantic Validation
+- **Serialization:** Joblib for efficient model persistence
+
+### UI & Frontend (PulseGuard Sentinel)
+- **Framework:** [React 18](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Animation:** [Framer Motion](https://www.framer.com/motion/) (Smooth state transitions & telemetry scanner)
+- **Design System:** Custom Medical-Tech UI with Glassmorphism & SVG Telemetry Gauges
+- **Icons:** [Lucide-React](https://lucide.dev/)
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Deployment Strategy
 
+| Component | Platform | URL |
+|-----------|----------|-----|
+| **Frontend** | [Vercel](https://vercel.com) | https://heart-disease-prediction-ui.vercel.app |
+| **Microservice** | [Railway](https://railway.app) | https://heart-api.up.railway.app |
+
+---
+
+## 🖥️ Getting Started
+
+### 1. Local Development (Backend)
 ```bash
-# Clone the repository
-git clone https://github.com/Vassista/heart-disease-prediction.git
-cd heart-disease-prediction
+# Install dependencies (Conda)
+conda env create -f environment.yml
+conda activate heart-disease-env
 
-# Install dependencies
- conda env create -f environment.yml
- conda activate heart-disease-env
-
-# Option 1: Run the notebook
-jupyter notebook heart-disease.ipynb
-
-# Option 2: Run the modular training script
-python train.py
-
-# Option 3: Run the FastAPI server
-uvicorn src.api:app --reload
+# Start Inference Server
+fastapi dev src/api.py
 ```
 
+### 2. Local Development (Frontend)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*The UI will be available at `http://localhost:5173`.*
+
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 heart-disease-prediction/
-├── src/                      # Modular Python source code
-│   ├── api.py                # FastAPI web server and endpoints
-│   ├── schemas.py            # Pydantic schemas for data validation
-│   ├── data_loader.py        # Polars-based data loading
-│   ├── preprocessing.py      # Categorical mapping & transformer logic
-│   ├── models.py             # Model definitions & save/load helpers
-│   ├── evaluation.py         # Performance metrics & visualization
-│   └── utils.py              # Pathing and logging utilities
-├── data/                     # Raw dataset storage
-├── models/                   # Serialized model artifacts (.joblib)
-├── train.py                  # CLI script to train and save the model
-├── requirements.txt          # Python dependencies for pip
-├── environment.yml           # Full Conda environment configuration
-├── heart-disease.ipynb       # Original research and EDA notebook
-├── README.md                 # Project documentation
-└── .gitignore                # Git exclusion rules
+├── frontend/                 # React + Vite Dashboard
+│   ├── src/                  # PulseGuard Sentinel source
+│   └── package.json          # UI dependencies
+├── src/                      # Backend Microservice
+│   ├── api.py                # FastAPI web server
+│   ├── schemas.py            # Pydantic schemas
+│   └── ...                   # ML Data Loaders & Preprocessing
+├── models/                   # Serialized XGBoost (.joblib)
+├── train.py                  # CLI training script
+├── environment.yml           # Conda env config
+├── heart-disease.ipynb       # Research notebook
+└── README.md                 # Documentation
 ```
 
 ---
 
 ## 📜 License
-
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-*Built with ❤️ because I love Machine Learning.*
+*Built with ❤️ to push the boundaries of AI & UX.*

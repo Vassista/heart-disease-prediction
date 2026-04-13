@@ -56,7 +56,12 @@ const App: React.FC = () => {
     setResult(null);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '/api';
+      let apiUrl = import.meta.env.VITE_API_URL || '/api';
+      // Remove trailing slash if present to avoid double slashes
+      if (apiUrl.endsWith('/')) {
+        apiUrl = apiUrl.slice(0, -1);
+      }
+      
       const response = await fetch(`${apiUrl}/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
